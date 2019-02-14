@@ -42,3 +42,38 @@ else:
 finally:
     print("Siempre paso por aca")
 
+#Guardando la excepción: 
+#Podemos asignar la excepción a una variable: 
+
+try:
+    n = input("Introduce un numero (ex en variable): ")
+    5/n
+except Exception as e:
+    print(type(e).__name__)
+
+#Encadenando excepciones:
+#Podemos crear multiples comprobaciones, siempre que dejemos en último lugar la excepción padre de todas (Exception, engloba cualquier tipo de error)
+#Si la ponemos al principio el resto de las comprobaciones no se ejecutarían.
+
+try:
+    n = float(input("Introduce un numero: "))
+    5/n
+except TypeError:
+    print("No se puede dividir el numero por una cadena")
+except ValueError:
+    print("Debe ingresar una cadena que sea un numero")
+except ZeroDivisionError:
+    print("No se puede dividir por cero, pruebe otro numero")
+except Exception as e:
+    print(type(e).__name__)
+
+#La instrucción "raise": Podemos lanzar una excepción. 
+
+def mi_funcion(algo=None):
+    try:
+        if algo is None:
+            raise ValueError("Error, no se permite un valor nulo")
+    except ValueError:
+        print("Error, no se permite un valor nulo (desde el except)")
+
+mi_funcion()
